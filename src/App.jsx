@@ -1,11 +1,16 @@
-import { Button } from "./components/ui/button";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./routes";
+import "./css/style.css";
+import "./charts/ChartjsConfig";
+import ThemeProvider from "./utils/ThemeContext";
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <h1 className="text-2xl font-bold mb-3">Welcome to My App</h1>
-      <Button>Click me</Button>
-    </div>
+    <BrowserRouter>
+      <ThemeProvider>
+        <AppRoutes />
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
