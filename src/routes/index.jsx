@@ -1,6 +1,10 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import Dashboard from "@/pages/dashboard/Index";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import GuestOnlyRoute from "@/components/GuestOnlyRoute";
+import Signin from "@/pages/signin/Index";
+import { HomeRoute } from "./HomeRoute";
+import GuardRoute from "@/components/GuardRoute";
+import { CategoryRoute } from "./CategoryRoute";
 
 export function AppRoutes() {
   const location = useLocation();
@@ -13,7 +17,19 @@ export function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="dashboard/" element={<Dashboard />} />
+      <Route
+        path="/signin"
+        element={
+          <GuestOnlyRoute>
+            <Signin />
+          </GuestOnlyRoute>
+        }
+      />
+      <Route path="/" element={<GuardRoute />}>
+        <Route path="dashboard/*" element={<HomeRoute />} />
+        <Route path="categories/*" element={<CategoryRoute />} />
+        <Route path="" element={<Navigate to="/dashboard" />} />
+      </Route>
     </Routes>
   );
 }

@@ -4,7 +4,7 @@ import Transition from "../utils/Transition";
 
 import UserAvatar from "../images/user-avatar-32.png";
 
-function DropdownProfile({ align }) {
+function DropdownProfile({ align, handleSignOut }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -103,8 +103,7 @@ function DropdownProfile({ align }) {
             <li>
               <Link
                 className="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3"
-                to="/signin"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={() => handleSignOut()}
               >
                 Sign Out
               </Link>
